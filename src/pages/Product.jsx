@@ -40,6 +40,7 @@ export const Product = () => {
     const currentData = products.slice(indexOfFirstData, indexOfLastData);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+
     const filter = products.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
 
     return (

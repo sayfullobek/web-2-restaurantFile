@@ -3,7 +3,7 @@ import {BaseUrl} from "./BaseUrl";
 export const Api = {
     login: '/auth/login',
 
-
+    district:'district',
     product: '/product',
     statistics: '/statistics',
     uploadPhoto: '/attachment/upload',

@@ -9,6 +9,7 @@ import {Dashboard} from "../pages/admin/Dashboard";
 import {AdminLayout} from "../layout/AdminLayout";
 import {NotFound} from "../component/NotFound";
 import {UserLayout} from "../layout/UserLayout";
+import {District} from "../pages/District.jsx";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                         <Route path={"/auth/admin/product"} element={<Product/>}/>
                         <Route path={"/auth/admin/product/:id"} element={<ProductItem/>}/>
                         <Route path={"/auth/admin/region"} element={<Region/>}/>
+                        <Route path={"/auth/admin/district"} element={<District/>}/>
                     </Route>
                     <Route path={"/user"} element={<UserLayout/>}/>
                     <Route path={"*"} element={<NotFound/>}/>
