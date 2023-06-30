@@ -14,7 +14,6 @@ export const ULogin = () => {
                                id="form2Example1" className="form-control"/>
                         <label className="form-label" htmlFor="form2Example1">tel raqam</label>
                     </div>
-
                     <div className="form-outline mb-4">
                         <input type="text" value={name} onChange={e => setName(e.target.value)}
                                id="form2Example2" className="form-control"/>
@@ -28,7 +27,6 @@ export const ULogin = () => {
                     </button>
                 </form>
             </div>
-
         </>
     )
 }
