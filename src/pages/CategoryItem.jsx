@@ -37,11 +37,11 @@ export const CategoryItem = () => {
                     {product.map((item) => (
                         <>
                             <div data-bs-toggle="modal" href="#exampleModalToggle" role="button"
-                                 className="card d-inline-block mb-3"
+                                 className="card d-inline-block mt-5 mb-3"
                                  style={{width: "600px", borderColor: 'seagreen', boxShadow: "2px 0,3px"}}>
                                 <div className="row g-0" style={{boxShadow: "1px 0,9"}}>
                                     <div className="col-md-4">
-                                        <img src={BaseUrl + Api.downloadPhoto + item.img}
+                                        <img src={Api.downloadPhoto + item.img}
                                              className="img-fluid rounded-start " style={{width: "100%"}}
                                              alt={item.name}/>
                                     </div>

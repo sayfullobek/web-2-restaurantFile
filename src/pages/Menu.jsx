@@ -24,6 +24,8 @@ export const Menu = () => {
     }, [])
     const saveUser = () => {
         localStorage.setItem("user", phoneNumber)
+
+
     }
     return (
         <div>
@@ -33,6 +35,10 @@ export const Menu = () => {
                         <button onClick={() => saveUser()} data-bs-toggle="modal" href="#examplePriceModalToggle"
                                 role="button" className={"btn btn-warning mt-5"}
                                 style={{marginLeft: "85%", marginTop: "30px"}}>Kirish
+                        </button>
+                        <button data-bs-toggle="modal" href="#examplePriceModalToggle"
+                                role="button" className={"btn btn-warning mt-5"}
+                                style={{marginLeft:"30px"}}><i className="bi bi-geo-alt-fill"></i>
                         </button>
                         <div className=" "
                              style={{width: "80%", marginLeft: "150px", height: "70%", marginTop: "20px"}}>
@@ -45,19 +51,19 @@ export const Menu = () => {
                                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                                             aria-label="Slide 3"></button>
                                 </div>
-                                {/*<div className="carousel-inner">*/}
-                                {/*    {product.map((item) => (*/}
-                                {/*        <>*/}
-                                {/*            <div className="carousel-item active">*/}
-                                {/*                <img src={BaseUrl + Api.download + item.img} className="d-block w-100" alt="..."/>*/}
-                                {/*                <div className="carousel-caption d-none d-md-block">*/}
-                                {/*                    <h5>Second slide label</h5>*/}
-                                {/*                    <p>Some representative placeholder content for the second slide.</p>*/}
-                                {/*                </div>*/}
-                                {/*            </div>*/}
-                                {/*        </>*/}
-                                {/*    ))}*/}
-                                {/*</div>*/}
+                                <div className="carousel-inner">
+                                    {product.map((item) => (
+                                        <>
+                                            <div className="carousel-item active">
+                                                <img src={Api.downloadPhoto + item.img} className="d-block w-100" alt="..."/>
+                                                <div className="carousel-caption d-none d-md-block">
+                                                    <h5>Second slide label</h5>
+                                                    <p>Some representative placeholder content for the second slide.</p>
+                                                </div>
+                                            </div>
+                                        </>
+                                    ))}
+                                </div>
                                 <button className="carousel-control-prev" type="button"
                                         data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -117,7 +123,7 @@ export const Menu = () => {
                         <>
                             <div data-bs-toggle="modal" href="#exampleModalToggle" role="button"
                                  className="card d-inline-block mb-5" style={{marginLeft: "40px", width: "20rem"}}>
-                                <img src={BaseUrl + Api.download + item.img} style={{width: "100%", height: "29vh"}}
+                                <img src={Api.downloadPhoto + item.img} style={{width: "100%", height: "29vh"}}
                                      className="card-img-top" alt={item.name}/>
                                 <div className="card-body">
                                     <h3 className={"text-center"}>{item.name}</h3>
