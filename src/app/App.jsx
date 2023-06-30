@@ -10,13 +10,19 @@ import {AdminLayout} from "../layout/AdminLayout";
 import {NotFound} from "../component/NotFound";
 import {UserLayout} from "../layout/UserLayout";
 import {District} from "../pages/District.jsx";
+import {CategoryItem} from "../pages/CategoryItem.jsx";
+import "../assets/scss/style.scss";
+import "../assets/css/style.css";
 
 function App() {
     return (
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path={"/"} element={<Menu/>}/>
+                    <Route path={"/"} element={<UserLayout/>}>
+                        <Route index element={<Menu/>}/>
+                        <Route path={"category/:id"} element={<CategoryItem/>}/>
+                    </Route>
                     <Route path={"/auth/login"} element={<Login/>}/>
                     <Route path={"/auth/admin"} element={<AdminLayout/>}>
                         <Route index element={<Dashboard/>}/>
@@ -26,7 +32,6 @@ function App() {
                         <Route path={"/auth/admin/region"} element={<Region/>}/>
                         <Route path={"/auth/admin/district"} element={<District/>}/>
                     </Route>
-                    <Route path={"/user"} element={<UserLayout/>}/>
                     <Route path={"*"} element={<NotFound/>}/>
                 </Routes>
             </BrowserRouter>

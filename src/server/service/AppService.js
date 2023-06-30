@@ -38,6 +38,14 @@ export const DeleteProduct = async (id) => {
         toast.error("xatolik")
     }
 }
+export const GetCategoryList = async (setCategory) => {
+    try {
+        const res = await BaseConfig.doGet(Api.category)
+        setCategory(res.data._embedded.list)
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 export const GetProductList = async (setProducts) => {
     try {
