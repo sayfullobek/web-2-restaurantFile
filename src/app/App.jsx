@@ -13,6 +13,9 @@ import {District} from "../pages/District.jsx";
 import {CategoryItem} from "../pages/CategoryItem.jsx";
 import "../assets/scss/style.scss";
 import "../assets/css/style.css";
+import {My} from "../pages/My.jsx";
+import {Basket} from "../pages/Basket.jsx";
+import {Registers} from "../pages/auth/Register.jsx";
 
 function App() {
     return (
@@ -22,6 +25,9 @@ function App() {
                     <Route path={"/"} element={<UserLayout/>}>
                         <Route index element={<Menu/>}/>
                         <Route path={"category/:id"} element={<CategoryItem/>}/>
+                        <Route path={"my/:id"} element={<My/>}/>
+                        <Route path={"/basket"} element={<Basket/>}/>
+                        <Route path={"/auth/register"} element={<Registers/>}/>
                     </Route>
                     <Route path={"/auth/login"} element={<Login/>}/>
                     <Route path={"/auth/admin"} element={<AdminLayout/>}>

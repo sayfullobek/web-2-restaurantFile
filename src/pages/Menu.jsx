@@ -1,19 +1,27 @@
 import rasm from "../images/bg_1.jpg"
 import rasm2 from "../images/bg_2.jpg"
 import rasm3 from "../images/bg_3.jpg"
-import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import {GetCategoryList, GetProductList} from "../server/service/AppService.js";
-import {BaseUrl} from "../server/BaseUrl.js";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {
+    GetCategoryList,
+    GetProductList,
+    GetUser,
+    SaveBasketProducts,
+} from "../server/service/AppService.js";
 import {Api} from "../server/Api.js";
+import button from "bootstrap/js/src/button.js";
+import {toast} from "react-toastify";
 
 export const Menu = () => {
     const [category, setCategory] = useState([]);
     const [product, setProduct] = useState([]);
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [users, setUser] = useState([])
     const getAll = async () => {
         try {
             await GetProductList(setProduct)
+            await GetUser(setUser)
             await GetCategoryList(setCategory)
         } catch (err) {
             console.log(err)
@@ -22,24 +30,13 @@ export const Menu = () => {
     useEffect(() => {
         getAll()
     }, [])
-    const saveUser = () => {
-        localStorage.setItem("user", phoneNumber)
-
-
-    }
+    const navigate = useNavigate()
     return (
         <div>
             <section className="hero-wrap">
                 <div className="home-slider owl-carousel js-fullheight">
                     <div className="slider-item js-fullheight " style={{backgroundImage: `url(${rasm})`}}>
-                        <button onClick={() => saveUser()} data-bs-toggle="modal" href="#examplePriceModalToggle"
-                                role="button" className={"btn btn-warning mt-5"}
-                                style={{marginLeft: "85%", marginTop: "30px"}}>Kirish
-                        </button>
-                        <button data-bs-toggle="modal" href="#examplePriceModalToggle"
-                                role="button" className={"btn btn-warning mt-5"}
-                                style={{marginLeft:"30px"}}><i className="bi bi-geo-alt-fill"></i>
-                        </button>
+
                         <div className=" "
                              style={{width: "80%", marginLeft: "150px", height: "70%", marginTop: "20px"}}>
                             <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
@@ -55,7 +52,8 @@ export const Menu = () => {
                                     {product.map((item) => (
                                         <>
                                             <div className="carousel-item active">
-                                                <img src={Api.downloadPhoto + item.img} className="d-block w-100" alt="..."/>
+                                                <img src={Api.downloadPhoto + item.img} className="d-block w-100"
+                                                     alt="..."/>
                                                 <div className="carousel-caption d-none d-md-block">
                                                     <h5>Second slide label</h5>
                                                     <p>Some representative placeholder content for the second slide.</p>
@@ -138,7 +136,7 @@ export const Menu = () => {
                                     <div className="modal-content">
                                         <div className="modal-header">
 
-                                            <img src={BaseUrl + Api.download + item.img}
+                                            <img src={Api.downloadPhoto + item.img}
                                                  className="img-fluid rounded-start " style={{width: "800px"}}
                                                  alt={item.name}></img>
                                             <button type="button" className="btn-close" data-bs-dismiss="modal"
@@ -157,9 +155,16 @@ export const Menu = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                        <button  data-bs-toggle="modal" href="#examplePriceModalToggle" role="button" className={"btn btn-warning mb-2"}
-                                                 style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
-                                        </button>
+                                        {localStorage.getItem("id") ? (
+                                            <button type={"button"} onClick={saveProduct(item.id)}
+                                                    className={"btn btn-warning mb-2"}
+                                                    style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
+                                            </button>
+                                        ) : (<button role="button" data-bs-toggle="modal" href="#loginUser"
+                                                     className={"btn btn-warning mb-2"}
+                                                     style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +173,7 @@ export const Menu = () => {
                     ))}
                 </div>
             </section>
-            <div className="modal fade" id="examplePriceModalToggle" aria-hidden="true"
+            <div className="modal fade" id="loginUser" aria-hidden="true"
                  aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
@@ -181,16 +186,56 @@ export const Menu = () => {
                             <input value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} type="number"
                                    className={"form-control"} placeholder={"+998 (__)___-__-__"}/>
                         </div>
-                        <div className="modal-footer">
-                        </div>
-                        <button className="btn btn-warning mb-3" data-bs-target="#exampleModalToggle2"
-                                data-bs-toggle="modal" data-bs-dismiss="modal"
+                        <button onClick={() => checkUser({users, phoneNumber, navigate})}
+                                className="btn btn-warning mb-3"
                                 style={{width: "95%", marginLeft: "14px"}}>Tasdiqlash
                         </button>
                     </div>
                 </div>
             </div>
-
+        </div>
+    )
+}
+export const checkUser = ({users, phoneNumber, navigate}) => {
+    const register = () => {
+        navigate("/auth/register")
+        window.location.reload()
+    }
+    return (
+        <>
+            <div>
+                {users.map((item) => (
+                    item.phoneNumber === phoneNumber ? (
+                        localStorage.setItem("id", item.id),
+                            localStorage.setItem("firstName", item.firstName),
+                            localStorage.setItem("lastName", item.lastName),
+                            localStorage.setItem('phoneNumber', item.phoneNumber),
+                            localStorage.setItem("role", item.getRole[0].roleName),
+                            window.location.reload()
+                    ) : (
+                        register()
+                    )))}
+                <div>
+                </div>
+            </div>
+        </>
+    )
+}
+export const saveProduct = (id) => {
+    const getAll = async () => {
+        try {
+            await SaveBasketProducts(id);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    return (
+        <div>
+            {localStorage.getItem("id") ? (
+                getAll()
+            ) : (
+                toast.error("ro'yxatdan o'tmagansiz")
+            )}
         </div>
     )
 }

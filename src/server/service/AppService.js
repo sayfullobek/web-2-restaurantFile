@@ -44,6 +44,7 @@ export const GetCategoryList = async (setCategory) => {
         setCategory(res.data._embedded.list)
     } catch (err) {
         console.log(err)
+        toast.error("xatolik")
     }
 }
 
@@ -53,6 +54,16 @@ export const GetProductList = async (setProducts) => {
         setProducts(res.data)
     } catch (err) {
         console.log(err)
+        toast.error("xatolik")
+    }
+}
+export const GetUser = async (setUser) => {
+    try {
+        const res = await BaseConfig.doGet("/auth")
+        setUser(res.data)
+    } catch (err) {
+        console.log(err)
+        toast.error("xatolik")
     }
 }
 
@@ -93,3 +104,21 @@ export const UploadPhoto = async (photo) => {
         toast.error("rasmda xatolik")
     }
 }
+export const SaveBasketProducts = async (id) => {
+    try {
+        await BaseConfig.doPost(Api.basket + localStorage.getItem("id") + "&&Id=" + id)
+        toast.success("savatga saqlandi")
+    } catch (err) {
+        console.log(err)
+    }
+}
+// export const getBasketProduct=async (id,setProduct)=>{
+//     try {
+//       const res = await BaseConfig.doGet(Api.basket+id)
+//         setProduct(res.data)
+//         console.log(res)
+//     }catch (err){
+//         console.log(err)
+//         toast.error("xatolik")
+//     }
+// }

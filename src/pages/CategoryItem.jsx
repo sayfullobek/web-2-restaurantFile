@@ -4,13 +4,13 @@ import {BaseConfig} from "../server/BaseConfig.js";
 import {BaseUrl} from "../server/BaseUrl.js";
 import {Api} from "../server/Api.js";
 import {Loading} from "../component/Loading.jsx";
+import {saveProduct} from "./Menu.jsx";
 
 export const CategoryItem = () => {
     const id = useParams().id
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false)
-    const [search, setSearch] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
+     const [phoneNumber, setPhoneNumber] = useState('')
     const
         getProduct = async () => {
             try {
@@ -25,14 +25,10 @@ export const CategoryItem = () => {
     useEffect(() => {
         getProduct()
     }, [])
-    // const filter = product.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
     return (
         <div>
             {loading ? (
                 <div className={"container mt-5"}>
-                    <input type="search" placeholder={"mahsulot qidirish..."} value={search}
-                           onChange={e => setSearch(e.target.value)}
-                           className={"form-control m-3 mt-0 mb-0 bg-danger"}/>
 
                     {product.map((item) => (
                         <>
@@ -81,8 +77,7 @@ export const CategoryItem = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                        <button className={"btn btn-warning mb-2"}
-                                                data-bs-toggle="modal" href="#examplePriceModalToggle" role="button"
+                                        <button className={"btn btn-warning mb-2"} onClick={()=>saveProduct(item.id)} role="button"
                                                 style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
                                         </button>
                                     </div>
