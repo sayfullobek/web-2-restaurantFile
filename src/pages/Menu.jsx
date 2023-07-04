@@ -51,8 +51,8 @@ export const Menu = () => {
                                 <div className="carousel-inner">
                                     {product.map((item) => (
                                         <>
-                                            <div className="carousel-item active">
-                                                <img src={Api.downloadPhoto + item.img} className="d-block w-100"
+                                            <div className="carousel-item active ">
+                                                <img src={Api.downloadPhoto + item.img} className="d-flex "
                                                      alt="..."/>
                                                 <div className="carousel-caption d-none d-md-block">
                                                     <h5>Second slide label</h5>
@@ -156,8 +156,8 @@ export const Menu = () => {
                                             </div>
                                         </div>
                                         {localStorage.getItem("id") ? (
-                                            <button onClick={saveProduct(item.id)}
-                                                    className={"btn btn-warning mb-2"}
+                                            <button className={"btn btn-warning mb-2"}
+                                                    onClick={() => saveProduct(item.id)} role="button"
                                                     style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
                                             </button>
                                         ) : (<button role="button" data-bs-toggle="modal" href="#loginUser"
@@ -168,7 +168,6 @@ export const Menu = () => {
                                     </div>
                                 </div>
                             </div>
-
                         </>
                     ))}
                 </div>
@@ -230,12 +229,9 @@ export const saveProduct = (id) => {
         }
     }
     return (
-        <div>
-            {localStorage.getItem("id") ? (
-                getAll()
-            ) : (
-                toast.error("ro'yxatdan o'tmagansiz")
-            )}
+        <div>{
+            getAll()
+        }
         </div>
     )
 }

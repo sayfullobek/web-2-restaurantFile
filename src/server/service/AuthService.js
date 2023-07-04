@@ -40,22 +40,23 @@ export const Register = async (dto) => {
     if (dto.surName.trim().length === 0) {
         return toast.warn("familyangizni kirting")
     }
+
     try {
-        const res = BaseConfig.doPost(Api.register, dto)
+        const res = await BaseConfig.doPost(Api.register, dto)
         console.log(res)
-        // if (ifStatus(res.status)) {
-        //     localStorage.setItem("id", res.data.user.id)
-        //     localStorage.setItem("firstName", res.data.user.firstName)
-        //     localStorage.setItem("lastName", res.data.user.lastName)
-        //     localStorage.setItem('phoneNumber', res.data.user.phoneNumber)
-        //     localStorage.setItem("role", res.data.user.roles[0].roleName)
-        //     toast.success("kuting...")
-        //     console.log(res.status.data.length)
-        //     setTimeout(() => {
-        //         window.location.reload()
-        //     })
-        // }
+        if (ifStatus(res.status)) {
+            localStorage.setItem("id", res.data.id)
+            localStorage.setItem("firstName", res.data.firstName)
+            localStorage.setItem("lastName", res.data.lastName)
+            localStorage.setItem('phoneNumber', res.data.phoneNumber)
+            localStorage.setItem("role","user")
+            toast.success("kuting...")
+            setTimeout(() => {
+                window.location.reload()
+            })
+        }
     } catch (err) {
+        toast.error("xato")
         console.log(err)
     }
 }

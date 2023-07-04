@@ -109,16 +109,17 @@ export const SaveBasketProducts = async (id) => {
         await BaseConfig.doPost(Api.basket + localStorage.getItem("id") + "&&Id=" + id)
         toast.success("savatga saqlandi")
     } catch (err) {
+        toast.error("mahsulot savatda mavjud")
         console.log(err)
     }
 }
-// export const getBasketProduct=async (id,setProduct)=>{
-//     try {
-//       const res = await BaseConfig.doGet(Api.basket+id)
-//         setProduct(res.data)
-//         console.log(res)
-//     }catch (err){
-//         console.log(err)
-//         toast.error("xatolik")
-//     }
-// }
+export const getBasketProduct=async (id,setProduct)=>{
+    try {
+      const res = await BaseConfig.doGet(Api.basket+id)
+        setProduct(res.data)
+        console.log(res)
+    }catch (err){
+        console.log(err)
+        toast.error("xatolik")
+    }
+}

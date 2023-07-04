@@ -4,7 +4,6 @@ export const Footer = () => {
             <footer className="text-center text-lg-start bg-light text-muted">
                 <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                     <div className="me-5 d-none d-lg-block">
-                        <span>Shavkat.dev|-|developer</span>
                     </div>
 
                     <div>
@@ -82,20 +81,18 @@ export const Footer = () => {
 
                             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                                 <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-                                <p><i className="fas fa-home me-3"/> New York, NY 10012, US</p>
+                                <p><i className="fas fa-home me-3"/>  Shakhrisabz, UZ 3990 US</p>
                                 <p>
                                     <i className="fas fa-envelope me-3"/>
-                                        shavkatn440@gmail.com
                                 </p>
                                 <p><i className="fas fa-phone me-3"/> +998 90 441 08 01</p>
-                                <p><i className="fas fa-print me-3"/> +998 90 441 08 01</p>
+                                <p><i className="fas fa-print me-3"/> +998 50 053 70 27</p>
                             </div>
                         </div>
                     </div>
                 </section>
                 <div className="text-center p-4 bg-light">
                     © 2023 Copyright:
-                    <a className="text-reset fw-bold" href="https://t.me/shavkat0801">SHAVKAT</a>
                 </div>
             </footer>
         </div>

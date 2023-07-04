@@ -1,7 +1,6 @@
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {BaseConfig} from "../server/BaseConfig.js";
-import {BaseUrl} from "../server/BaseUrl.js";
 import {Api} from "../server/Api.js";
 import {Loading} from "../component/Loading.jsx";
 import {saveProduct} from "./Menu.jsx";
@@ -10,18 +9,16 @@ export const CategoryItem = () => {
     const id = useParams().id
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false)
-     const [phoneNumber, setPhoneNumber] = useState('')
-    const
-        getProduct = async () => {
-            try {
-                const res = await BaseConfig.doGetByCategoryId(id)
-                setLoading(true)
-                setProduct(res.data)
-            } catch (err) {
-                console.log(err)
-            }
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const getProduct = async () => {
+        try {
+            const res = await BaseConfig.doGetByCategoryId(id)
+            setLoading(true)
+            setProduct(res.data)
+        } catch (err) {
+            console.log(err)
         }
-    console.log(product)
+    }
     useEffect(() => {
         getProduct()
     }, [])
@@ -34,7 +31,12 @@ export const CategoryItem = () => {
                         <>
                             <div data-bs-toggle="modal" href="#exampleModalToggle" role="button"
                                  className="card d-inline-block mt-5 mb-3"
-                                 style={{width: "600px", borderColor: 'seagreen', boxShadow: "2px 0,3px"}}>
+                                 style={{
+                                     width: "600px",
+                                     marginLeft: "10px",
+                                     borderColor: 'seagreen',
+                                     boxShadow: "2px 0,3px"
+                                 }}>
                                 <div className="row g-0" style={{boxShadow: "1px 0,9"}}>
                                     <div className="col-md-4">
                                         <img src={Api.downloadPhoto + item.img}
@@ -57,8 +59,7 @@ export const CategoryItem = () => {
                                 <div className="modal-dialog modal-dialog-centered">
                                     <div className="modal-content">
                                         <div className="modal-header">
-
-                                            <img src={BaseUrl + Api.download + item.img}
+                                            <img src={Api.downloadPhoto + item.img}
                                                  className="img-fluid rounded-start " style={{width: "800px"}}
                                                  alt={item.name}></img>
                                             <button type="button" className="btn-close" data-bs-dismiss="modal"
@@ -77,7 +78,8 @@ export const CategoryItem = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                        <button className={"btn btn-warning mb-2"} onClick={()=>saveProduct(item.id)} role="button"
+                                        <button className={"btn btn-warning mb-2"} onClick={() => saveProduct(item.id)}
+                                                role="button"
                                                 style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
                                         </button>
                                     </div>
