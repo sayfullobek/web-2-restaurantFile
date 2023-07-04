@@ -2,8 +2,6 @@ import {toast} from "react-toastify";
 import {BaseConfig} from "../BaseConfig";
 import {Api} from "../Api";
 import {ifStatus} from "../../utils/Utils";
-import {useNavigate} from "react-router-dom";
-import {Menu} from "../../pages/Menu.jsx";
 
 export const LoginHandler = async (data) => {
     if (data.phoneNumber.trim().length === 0) {

@@ -156,7 +156,7 @@ export const Menu = () => {
                                             </div>
                                         </div>
                                         {localStorage.getItem("id") ? (
-                                            <button type={"button"} onClick={saveProduct(item.id)}
+                                            <button onClick={saveProduct(item.id)}
                                                     className={"btn btn-warning mb-2"}
                                                     style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
                                             </button>
