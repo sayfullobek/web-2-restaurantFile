@@ -18,6 +18,7 @@ export const Menu = () => {
     const [product, setProduct] = useState([]);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [users, setUser] = useState([])
+    const [one, setOne] = useState({})
     const getAll = async () => {
         try {
             await GetProductList(setProduct)
@@ -31,6 +32,9 @@ export const Menu = () => {
         getAll()
     }, [])
     const navigate = useNavigate()
+    const oneProduct = (onejon) => {
+        setOne(onejon)
+    }
     return (
         <div>
             <section className="hero-wrap">
@@ -119,7 +123,8 @@ export const Menu = () => {
 
                     {product.map((item) => (
                         <>
-                            <div data-bs-toggle="modal" href="#exampleModalToggle" role="button"
+                            <div data-bs-toggle="modal" onClick={() => oneProduct(item)} href="#exampleModalToggle"
+                                 role="button"
                                  className="card d-inline-block mb-5" style={{marginLeft: "40px", width: "20rem"}}>
                                 <img src={Api.downloadPhoto + item.img} style={{width: "100%", height: "29vh"}}
                                      className="card-img-top" alt={item.name}/>
@@ -130,48 +135,48 @@ export const Menu = () => {
                                     <p className="card-text">{item.description}  </p>
                                 </div>
                             </div>
-                            <div className="modal fade" id="exampleModalToggle" aria-hidden="true"
-                                 aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
-                                <div className="modal-dialog modal-dialog-centered">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-
-                                            <img src={Api.downloadPhoto + item.img}
-                                                 className="img-fluid rounded-start " style={{width: "800px"}}
-                                                 alt={item.name}></img>
-                                            <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <div className="col-md-4">
-                                                <h5 className="card-title">{item.name}</h5>
-                                            </div>
-                                            <div className={"modal-body"}>
-                                                <p className="card-text">{item.description}</p>
-                                            </div>
-                                            <div className={"modal-body"}>
-                                                <p className="card-text"><small
-                                                    className="text-muted">{item.price} so'm</small>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        {localStorage.getItem("id") ? (
-                                            <button className={"btn btn-warning mb-2"}
-                                                    onClick={() => saveProduct(item.id)} role="button"
-                                                    style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
-                                            </button>
-                                        ) : (<button role="button" data-bs-toggle="modal" href="#loginUser"
-                                                     className={"btn btn-warning mb-2"}
-                                                     style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
                         </>
                     ))}
                 </div>
             </section>
+            <div className="modal fade" id="exampleModalToggle" aria-hidden="true"
+                 aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+
+                            <img src={Api.downloadPhoto + one.img}
+                                 className="img-fluid rounded-start " style={{width: "800px"}}
+                                 alt={one.name}></img>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="col-md-4">
+                                <h5 className="card-title">{one.name}</h5>
+                            </div>
+                            <div className={"modal-body"}>
+                                <p className="card-text">{one.description}</p>
+                            </div>
+                            <div className={"modal-body"}>
+                                <p className="card-text"><small
+                                    className="text-muted">{one.price} so'm</small>
+                                </p>
+                            </div>
+                        </div>
+                        {localStorage.getItem("id") ? (
+                            <button className={"btn btn-warning mb-2"}
+                                    onClick={() => saveProduct(one.id)} role="button"
+                                    style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
+                            </button>
+                        ) : (<button role="button" data-bs-toggle="modal" href="#loginUser"
+                                     className={"btn btn-warning mb-2"}
+                                     style={{width: "470px", marginLeft: "15px"}}> Savatga qo'shish
+                            </button>
+                        )}
+                    </div>
+                </div>
+            </div>
             <div className="modal fade" id="loginUser" aria-hidden="true"
                  aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">

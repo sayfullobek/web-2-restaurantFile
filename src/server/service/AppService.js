@@ -63,7 +63,7 @@ export const GetUser = async (setUser) => {
         setUser(res.data)
     } catch (err) {
         console.log(err)
-        toast.error("xatolik")
+        toast.error(err.response.data.message)
     }
 }
 
@@ -91,7 +91,7 @@ export const SaveProduct = async (data) => {
         toast.success("saqlandi")
     } catch (err) {
         console.log(err)
-        toast.error("xatolik")
+        toast.error(err.response.data.message)
     }
 }
 
@@ -101,7 +101,7 @@ export const UploadPhoto = async (photo) => {
         return res.data
     } catch (err) {
         console.log(err)
-        toast.error("rasmda xatolik")
+        toast.error(err.response.data.message)
     }
 }
 export const SaveBasketProducts = async (id) => {
@@ -109,8 +109,8 @@ export const SaveBasketProducts = async (id) => {
         await BaseConfig.doPost(Api.basket + localStorage.getItem("id") + "&&Id=" + id)
         toast.success("savatga saqlandi")
     } catch (err) {
-        toast.error("mahsulot savatda mavjud")
-        console.log(err)
+        toast.error(err.response.data.message)
+        console.log(err.response.data.message)
     }
 }
 export const getBasketProduct=async (id,setProduct)=>{
