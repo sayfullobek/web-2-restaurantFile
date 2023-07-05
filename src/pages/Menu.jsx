@@ -120,7 +120,6 @@ export const Menu = () => {
                             <h2 className="mb-4">Recent Blog</h2>
                         </div>
                     </div>
-
                     {product.map((item) => (
                         <>
                             <div data-bs-toggle="modal" onClick={() => oneProduct(item)} href="#exampleModalToggle"
