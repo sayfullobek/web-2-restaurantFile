@@ -18,7 +18,7 @@ export const Category = () => {
             const data = {
                 name
             }
-            await axios.post("http://localhost:8080/api/category", data)
+            await axios.post("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category", data)
             toast.success("successfully saved category")
             setTimeout(() => {
                 window.location.reload()
@@ -36,7 +36,7 @@ export const Category = () => {
             const data = {
                 name
             }
-            await axios.put("http://localhost:8080/api/category/" + id, data)
+            await axios.put("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category/" + id, data)
             toast.success("successfully edited category")
             setTimeout(() => {
                 window.location.reload()
@@ -48,7 +48,7 @@ export const Category = () => {
 
     const deleteCategory = async () => {
         try {
-            await axios.delete("http://localhost:8080/api/category/" + id)
+            await axios.delete("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category/" + id)
             toast.success("deleted")
             setTimeout(() => {
                 window.location.reload()
@@ -60,7 +60,7 @@ export const Category = () => {
 
     const getAll = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/category")
+            const res = await axios.get("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category")
             setCategory(res.data._embedded.list)
             // setPageSize(res.data.page.size)
             // setTotalElements(res.data.page.totalElements)
