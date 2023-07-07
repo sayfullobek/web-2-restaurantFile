@@ -30,3 +30,32 @@ export const LoginHandler = async (data) => {
         toast.error("xatolik")
     }
 }
+export const Register = async (dto) => {
+    if (dto.phoneNumber.trim().length !== 9) {
+        return toast.warn("tel raqamni tog'ri kiriting")
+    }
+    if (dto.name.trim().length === 0) {
+        return toast.warn("ismingizni kiriting")
+    }
+    if (dto.surName.trim().length === 0) {
+        return toast.warn("familyangizni kirting")
+    }
+    try {
+        const res = await BaseConfig.doPost(Api.register, dto)
+        console.log(res.data.user)
+        if (ifStatus(res.status)) {
+            localStorage.setItem("id", res.data.id)
+            localStorage.setItem("firstName",dto.name)
+            localStorage.setItem("lastName",dto.surName)
+            localStorage.setItem('phoneNumber', dto.phoneNumber)
+            localStorage.setItem("role","user")
+            toast.success("kuting...")
+            setTimeout(() => {
+                window.location.reload()
+            })
+        }
+    } catch (err) {
+        toast.error("xato")
+        console.log(err)
+    }
+}

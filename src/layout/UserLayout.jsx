@@ -1,13 +1,14 @@
-import {Navbar} from "../component/Navbar";
-import {Menu} from "../pages/Menu";
+import {Footer} from "../component/Footer.jsx";
 import {Outlet} from "react-router-dom";
+import {UNavbar} from "../component/UNavbar.jsx";
+import React from "react";
 
 export const UserLayout = () => {
     return (
-        <div className={"container"}>
-            <Navbar/>
+        <div>
+            <UNavbar/>
             <Outlet/>
-            <Menu/>
+            <Footer/>
         </div>
     )
 }

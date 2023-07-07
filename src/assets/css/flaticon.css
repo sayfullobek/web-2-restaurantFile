@@ -1,7 +1,9 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 10/09/2018 08:41
+  	Creation date: 06/10/2018 08:32
   	*/
+
+
 @font-face {
   font-family: "Flaticon";
   src: url("../fonts/flaticon/font/Flaticon.eot");
@@ -34,10 +36,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.flaticon-pizza-1:before { content: "\f100"; }
-.flaticon-pizza:before { content: "\f101"; }
-.flaticon-bicycle:before { content: "\f102"; }
-.flaticon-diet:before { content: "\f103"; }
-.flaticon-medal:before { content: "\f104"; }
-.flaticon-laugh:before { content: "\f105"; }
-.flaticon-chef:before { content: "\f106"; }
+.flaticon-breakfast:before { content: "\f100"; }
+.flaticon-bread:before { content: "\f101"; }
+.flaticon-pizza:before { content: "\f102"; }
+.flaticon-chicken-leg:before { content: "\f103"; }
+.flaticon-omelette:before { content: "\f104"; }
+.flaticon-burger:before { content: "\f105"; }
+.flaticon-cupcake:before { content: "\f106"; }
+.flaticon-ice-cream:before { content: "\f107"; }
+.flaticon-wine:before { content: "\f108"; }
+.flaticon-wine-1:before { content: "\f109"; }

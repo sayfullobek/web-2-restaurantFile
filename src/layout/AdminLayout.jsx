@@ -15,7 +15,9 @@ export const AdminLayout = () => {
                         <div className={"p-3"} style={{width: '100%', height: '94%'}}>
                             <Outlet/>
                         </div>
+                        <div style={{width:"100"}}>
                         <Footer/>
+                        </div>
                     </div>
                 </div>
             ) : (

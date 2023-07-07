@@ -38,6 +38,15 @@ export const DeleteProduct = async (id) => {
         toast.error("xatolik")
     }
 }
+export const GetCategoryList = async (setCategory) => {
+    try {
+        const res = await BaseConfig.doGet(Api.category)
+        setCategory(res.data._embedded.list)
+    } catch (err) {
+        console.log(err)
+        toast.error("xatolik")
+    }
+}
 
 export const GetProductList = async (setProducts) => {
     try {
@@ -45,6 +54,16 @@ export const GetProductList = async (setProducts) => {
         setProducts(res.data)
     } catch (err) {
         console.log(err)
+        toast.error("xatolik")
+    }
+}
+export const GetUser = async (setUser) => {
+    try {
+        const res = await BaseConfig.doGet("/auth")
+        setUser(res.data)
+    } catch (err) {
+        console.log(err)
+        toast.error(err.response.data.message)
     }
 }
 
@@ -72,7 +91,7 @@ export const SaveProduct = async (data) => {
         toast.success("saqlandi")
     } catch (err) {
         console.log(err)
-        toast.error("xatolik")
+        toast.error(err.response.data.message)
     }
 }
 
@@ -82,6 +101,25 @@ export const UploadPhoto = async (photo) => {
         return res.data
     } catch (err) {
         console.log(err)
-        toast.error("rasmda xatolik")
+        toast.error(err.response.data.message)
+    }
+}
+export const SaveBasketProducts = async (id) => {
+    try {
+        await BaseConfig.doPost(Api.basket + localStorage.getItem("id") + "&&Id=" + id)
+        toast.success("savatga saqlandi")
+    } catch (err) {
+        toast.error(err.response.data.message)
+        console.log(err.response.data.message)
+    }
+}
+export const getBasketProduct=async (id,setProduct)=>{
+    try {
+      const res = await BaseConfig.doGet(Api.basket+id)
+        setProduct(res.data)
+        console.log(res)
+    }catch (err){
+        console.log(err)
+        toast.error("xatolik")
     }
 }

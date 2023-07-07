@@ -14,4 +14,7 @@ export const BaseConfig = {
     doDelete: (url, id) => axios.delete(
         `${BaseUrl}${url}/${id}`
     ),
+    doGetByCategoryId: (id) => axios.get(
+        BaseUrl + "/product/category/" + id
+    )
 }
