@@ -17,7 +17,7 @@ export const Product = () => {
     const getAll = async () => {
         try {
             await GetProductList(setProducts)
-            const res = await axios.get("http://localhost:8080/api/category")
+            const res = await axios.get("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category")
             setCategories(res.data._embedded.list)
             setLoading(true)
         } catch (err) {
