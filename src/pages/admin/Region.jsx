@@ -1,16 +1,16 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
-import {PageNation} from "../component/PageNation";
+import {PageNation} from "../../component/PageNation.jsx";
 
-export const Category = () => {
+export const Region = () => {
     const [name, setName] = useState('')
-    const [category, setCategory] = useState([])
+    const [region, setRegion] = useState([])
     const [id, setId] = useState('')
     const [currentPage, setCurrentPage] = useState(1);
     const [prePage] = useState(10)
 
-    const saveCategory = async () => {
+    const saveRegion = async () => {
         if (name.trim().length === 0) {
             return toast.warning("name not null")
         }
@@ -18,8 +18,8 @@ export const Category = () => {
             const data = {
                 name
             }
-            await axios.post("http://localhost:8080/api/category", data)
-            toast.success("successfully saved category")
+            await axios.post("http://localhost:8080/api/region", data)
+            toast.success("successfully saved region")
             setTimeout(() => {
                 window.location.reload()
             }, 2000)
@@ -28,7 +28,7 @@ export const Category = () => {
         }
     }
 
-    const editCategory = async () => {
+    const editRegion = async () => {
         if (name.trim().length === 0) {
             return toast.warning("name not null")
         }
@@ -36,8 +36,8 @@ export const Category = () => {
             const data = {
                 name
             }
-            await axios.put("http://localhost:8080/api/category/" + id, data)
-            toast.success("successfully edited category")
+            await axios.put("http://localhost:8080/api/region/" + id, data)
+            toast.success("successfully edited region")
             setTimeout(() => {
                 window.location.reload()
             }, 2000)
@@ -46,9 +46,9 @@ export const Category = () => {
         }
     }
 
-    const deleteCategory = async () => {
+    const deleteRegion = async () => {
         try {
-            await axios.delete("http://localhost:8080/api/category/" + id)
+            await axios.delete("http://localhost:8080/api/region/" + id)
             toast.success("deleted")
             setTimeout(() => {
                 window.location.reload()
@@ -60,8 +60,8 @@ export const Category = () => {
 
     const getAll = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/category")
-            setCategory(res.data._embedded.list)
+            const res = await axios.get("http://localhost:8080/api/region")
+            setRegion(res.data._embedded.list)
             // setPageSize(res.data.page.size)
             // setTotalElements(res.data.page.totalElements)
             // setTotalPages(res.data.page.totalPages)
@@ -75,12 +75,12 @@ export const Category = () => {
 
     const indexOfLastData = currentPage * prePage;
     const indexOfFirstData = indexOfLastData - prePage;
-    const currentData = category.slice(indexOfFirstData, indexOfLastData);
+    const currentData = region.slice(indexOfFirstData, indexOfLastData);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className={"container"}>
-            <h1 className={"text-center m-5 text-primary"}>Category pages</h1>
+            <h1 className={"text-center m-5 text-primary"}>region pages</h1>
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 +add
             </button>
@@ -97,7 +97,7 @@ export const Category = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {category.map((item, i) => (
+                    {region.map((item, i) => (
                         <tr>
                             <td>{i + 1}</td>
                             <td>{item.name}</td>
@@ -120,24 +120,24 @@ export const Category = () => {
                     </tbody>
                 </table>
             )}
-            <PageNation totalData={category.length} perPage={prePage} paginate={paginate}/>
+            <PageNation totalData={region.length} perPage={prePage} paginate={paginate}/>
 
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">add category</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">add region</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"/>
                         </div>
                         <div className="modal-body">
-                            <input type="text" placeholder={"enter category name"} value={name}
+                            <input type="text" placeholder={"enter region name"} value={name}
                                    onChange={e => setName(e.target.value)} className={"form-control"}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button onClick={() => saveCategory()} type="button" className="btn btn-primary">Save
+                            <button onClick={() => saveRegion()} type="button" className="btn btn-primary">Save
                             </button>
                         </div>
                     </div>
@@ -149,17 +149,17 @@ export const Category = () => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="editModalLabel">add category</h1>
+                            <h1 className="modal-title fs-5" id="editModalLabel">add region</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"/>
                         </div>
                         <div className="modal-body">
-                            <input type="text" placeholder={"enter category name"} value={name}
+                            <input type="text" placeholder={"enter region name"} value={name}
                                    onChange={e => setName(e.target.value)} className={"form-control"}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button onClick={() => editCategory()} type="button" className="btn btn-primary">Save
+                            <button onClick={() => editRegion()} type="button" className="btn btn-primary">Save
                             </button>
                         </div>
                     </div>
@@ -171,13 +171,13 @@ export const Category = () => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="deleteModalLabel">delete category</h1>
+                            <h1 className="modal-title fs-5" id="deleteModalLabel">delete region</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button onClick={() => deleteCategory()} type="button" className="btn btn-primary">delete
+                            <button onClick={() => deleteRegion()} type="button" className="btn btn-primary">delete
                             </button>
                         </div>
                     </div>

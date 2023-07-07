@@ -9,6 +9,7 @@ export const CategoryItem = () => {
     const id = useParams().id
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false)
+    const [one, setOne] = useState({})
     const [phoneNumber, setPhoneNumber] = useState('')
     const getProduct = async () => {
         try {
@@ -22,6 +23,9 @@ export const CategoryItem = () => {
     useEffect(() => {
         getProduct()
     }, [])
+    const oneProduct = (onejon) => {
+        setOne(onejon)
+    }
     return (
         <div>
             {loading ? (
@@ -29,15 +33,14 @@ export const CategoryItem = () => {
 
                     {product.map((item) => (
                         <>
-                            <div data-bs-toggle="modal" href="#exampleModalToggle" role="button"
-                                 className="card d-inline-block mt-5 mb-3"
+                            <div data-bs-toggle="modal" onClick={() => oneProduct(item)} id={"productCard"}
+                                 href="#exampleModalToggle" role="button"
+                                 className="card shadow d-inline-block mt-5 mb-3"
                                  style={{
                                      width: "600px",
                                      marginLeft: "10px",
-                                     borderColor: 'seagreen',
-                                     boxShadow: "2px 0,3px"
                                  }}>
-                                <div className="row g-0" style={{boxShadow: "1px 0,9"}}>
+                                <div className="row" style={{boxShadow: "1px 0,9"}}>
                                     <div className="col-md-4">
                                         <img src={Api.downloadPhoto + item.img}
                                              className="img-fluid rounded-start " style={{width: "100%"}}
@@ -48,10 +51,18 @@ export const CategoryItem = () => {
                                             <h5 className="card-title">{item.name}</h5>
                                             <p className="card-text">{item.description}</p>
                                             <p className="card-text"><small
-                                                className="text-muted">{item.price} so'm</small>
+                                                className="text-muted"><i className="bi bi-cash-coin"></i> {item.price} so'm</small>
                                             </p>
                                         </div>
                                     </div>
+                                </div>
+                                <div id={"saveIcon"} style={{
+                                    marginLeft: "515px",
+                                    width: "50px",
+                                    borderRadius: "50%",
+                                    borderBlockColor: "#494f54"
+                                }}>
+                                    <i className="bi bi-cart3 " style={{fontSize: "30px", marginLeft: "10px"}}></i>
                                 </div>
                             </div>
                             <div className="modal fade" id="exampleModalToggle" aria-hidden="true"
@@ -59,22 +70,22 @@ export const CategoryItem = () => {
                                 <div className="modal-dialog modal-dialog-centered">
                                     <div className="modal-content">
                                         <div className="modal-header">
-                                            <img src={Api.downloadPhoto + item.img}
+                                            <img src={Api.downloadPhoto + one.img}
                                                  className="img-fluid rounded-start " style={{width: "800px"}}
-                                                 alt={item.name}></img>
+                                                 alt={one.name}></img>
                                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
                                         <div className="modal-body">
                                             <div className="col-md-4">
-                                                <h5 className="card-title">{item.name}</h5>
+                                                <h5 className="card-title">{one.name}</h5>
                                             </div>
                                             <div className={"modal-body"}>
-                                                <p className="card-text">{item.description}</p>
+                                                <p className="card-text">{one.description}</p>
                                             </div>
                                             <div className={"modal-body"}>
                                                 <p className="card-text"><small
-                                                    className="text-muted">{item.price} so'm</small>
+                                                    className="text-muted">{one.price} so'm</small>
                                                 </p>
                                             </div>
                                         </div>

@@ -40,15 +40,14 @@ export const Register = async (dto) => {
     if (dto.surName.trim().length === 0) {
         return toast.warn("familyangizni kirting")
     }
-
     try {
         const res = await BaseConfig.doPost(Api.register, dto)
-        console.log(res)
+        console.log(res.data.user)
         if (ifStatus(res.status)) {
             localStorage.setItem("id", res.data.id)
-            localStorage.setItem("firstName", res.data.firstName)
-            localStorage.setItem("lastName", res.data.lastName)
-            localStorage.setItem('phoneNumber', res.data.phoneNumber)
+            localStorage.setItem("firstName",dto.name)
+            localStorage.setItem("lastName",dto.surName)
+            localStorage.setItem('phoneNumber', dto.phoneNumber)
             localStorage.setItem("role","user")
             toast.success("kuting...")
             setTimeout(() => {

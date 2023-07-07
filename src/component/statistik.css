@@ -72,6 +72,15 @@ h5,
     }
 }
 
+#productCard:hover {
+    transform: translateY(-5.5px) scale(1);
+
+#saveIcon {
+    background: #fbed50;
+}
+
+}
+
 
 .font-weight-bold {
     font-weight: 600 !important;

@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import {DeleteProduct, EditProduct, GetProductList, SaveProduct, UploadPhoto} from "../server/service/AppService";
-import {Loading} from "../component/Loading";
+import {DeleteProduct, EditProduct, GetProductList, SaveProduct, UploadPhoto} from "../../server/service/AppService.js";
+import {Loading} from "../../component/Loading.jsx";
 import axios from "axios";
-import {Api} from "../server/Api";
+import {Api} from "../../server/Api.js";
 import {Link} from "react-router-dom";
-import {Pagination} from "../component/Pagination";
+import {Pagination} from "../../component/Pagination.jsx";
 
 export const Product = () => {
     const [products, setProducts] = useState([])
@@ -47,7 +47,7 @@ export const Product = () => {
         <div className={"container"}>
             {loading ? (
                 <>
-                    <div className="mt-5 w-100 d-flex align-items-center justify-content-between">
+                    <div className=" w-100 d-flex align-items-center justify-content-between" style={{marginTop:"230px"}}>
                         <div className={"w-25 d-flex align-items-center justify-content-between"}>
                             <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i

@@ -1,8 +1,8 @@
 import {useParams} from 'react-router-dom'
 import {useEffect, useState} from "react";
-import {BaseConfig} from "../server/BaseConfig";
-import {Api} from "../server/Api";
-import {Loading} from "../component/Loading";
+import {BaseConfig} from "../../server/BaseConfig.js";
+import {Api} from "../../server/Api.js";
+import {Loading} from "../../component/Loading.jsx";
 
 export const ProductItem = () => {
     const id = useParams().id

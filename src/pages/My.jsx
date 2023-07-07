@@ -1,25 +1,26 @@
 import {NotFound} from "../component/NotFound.jsx";
-import {useNavigate} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 export const My = () => {
-    const navigate = useNavigate()
-    const logout = () => {
-        localStorage.clear()
-        navigate("/")
-    }
+    const location = useLocation().pathname
+    const bArre = [
+        {name: "Ma'lumot", link: "/my/profile"},
+        {name: "Cartalar", link: "/my/cards"},
+        {name: "Buyurtmalar", link: "/my/order"}
+    ]
 
     return (
         localStorage.getItem("id") ? (
             <div>
-                <h1 className={"text-center"}>{localStorage.getItem("firstName") +" "+" "+ localStorage.getItem("lastName")}</h1><br/>
-                <form className={"d-flex "} style={{marginLeft: "40%"}}>
-                    <button className={"btn btn-warning m-2"}>Ma'lumot
-                    </button>
-                    <button className={"btn btn-warning m-2"}>Ma'lumot
-                    </button>
-                    <button onClick={() => logout()} className={"btn btn-danger m-2"}>Chiqish
-                    </button>
-                </form>
+                <form className={"d-flex mt-3 "} style={{marginLeft: "40%"}}>
+                    {bArre.map((item) => (
+                        <Link to={item.link}
+                              className={location === item.link ? "btn btn-warning m-1" : "btn btn-outline-secondary m-1"}
+                              aria-current="page">
+                            {item.name}
+                        </Link>
+                    ))}
+                   </form>
             </div>
         ) : (
             <NotFound/>
