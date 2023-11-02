@@ -51,9 +51,7 @@ export const SideBar = () => {
                     <strong>restaurant</strong>
                 </a>
                 <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><Link className={"dropdown-item"} style={{color: "rgb(225, 137, 13)"}} to={"/"}>orqaga <i
-                        className="bi bi-box-arrow-left"></i>
-                    </Link></li>
+
                     <li>
                         <hr className="dropdown-divider"/>
                     </li>

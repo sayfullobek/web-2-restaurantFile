@@ -6,8 +6,9 @@ export const Registers = () => {
     const [name, setName] = useState('')
     const [surName, setsurName] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('');
-    const registers = async () => {
-        const dto = {phoneNumber, name, surName}
+    const [password, setPassword] = useState('');
+    const registers = async ()   => {
+        const dto = {phoneNumber, name, surName,password}
         try {
             await Register(dto)
         } catch (err) {
@@ -26,6 +27,11 @@ export const Registers = () => {
                             <input type="phoneNumber" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)}
                                    id="form2Example1" className="form-control"/>
                             <label className="form-label" htmlFor="form2Example1">Telefon raqam</label>
+                        </div>
+                        <div className="form-outline mb-4">
+                            <input type="phoneNumber" value={password} onChange={e => setPassword(e.target.value)}
+                                   id="form2Example1" className="form-control"/>
+                            <label className="form-label" htmlFor="form2Example1">parol</label>
                         </div>
                         <div className="form-outline mb-4">
                             <input type="text" placeholder={"ismingizni kiriting"} value={name}

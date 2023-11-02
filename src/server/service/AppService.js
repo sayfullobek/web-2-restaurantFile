@@ -89,9 +89,11 @@ export const SaveProduct = async (data) => {
     try {
         await BaseConfig.doPost(Api.product, data)
         toast.success("saqlandi")
+        console.log(data,Api.product)
     } catch (err) {
         console.log(err)
         toast.error(err.response.data.message)
+        console.log(err)
     }
 }
 
@@ -103,6 +105,7 @@ export const UploadPhoto = async (photo) => {
         console.log(err)
         toast.error(err.response.data.message)
     }
+
 }
 export const SaveBasketProducts = async (id) => {
     try {

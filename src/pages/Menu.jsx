@@ -1,7 +1,7 @@
 import rasm from "../images/bg_1.jpg"
 import rasm2 from "../images/bg_2.jpg"
 import rasm3 from "../images/bg_3.jpg"
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {
     GetCategoryList,
@@ -34,33 +34,34 @@ export const Menu = () => {
     const oneProduct = (onejon) => {
         setOne(onejon)
     }
+
     return (
         <div>
             <section className="hero-wrap">
-                <div className="home-slider owl-carousel js-fullheight">
+                    <div className="home-slider owl-carousel js-fullheight">
                     <div className="slider-item js-fullheight " style={{backgroundImage: `url(${rasm})`}}>
                         <div className=" "
                              style={{width: "80%", marginLeft: "150px", height: "70%", marginTop: "20px"}}>
 
                         </div>
-                        <section className="shadow" style={{marginLeft: "200px"}}>
-                            {category.map((item, i) => (
-                                <Link to={`/category/${item.id}`}>
-                                    <div className={"d-inline-block"}
-                                         style={{marginLeft: "40px", boxShadow: "2px 0,2px white"}}>
-                                        <div className="card text-white bg-dark  mb-3"
-                                             style={{maxWidth: " 18rem", marginLeft: "20px"}}>
-                                            <div className="card-header">{i + 1}- bo'lim</div>
-                                            <div className="card-body">
-                                                <h5 className="card-title"><i className="fas fa-burger"
-                                                                              style={{fontSize: "40px"}}></i>{item.name}
-                                                </h5>
+                            <section className="shadow" style={{marginLeft: "200px"}}>
+                                {category.map((item, i) => (
+                                    <Link to={`/category/${item.id}`}>
+                                        <div className={"d-inline-block"}
+                                             style={{marginLeft: "40px", boxShadow: "2px 0,2px white"}}>
+                                            <div className="card text-white bg-dark  mb-3"
+                                                 style={{maxWidth: " 18rem", marginLeft: "20px"}}>
+                                                <div className="card-header">{i + 1}- bo'lim</div>
+                                                <div className="card-body">
+                                                    <h5 className="card-title"><i className="fas fa-burger"
+                                                                                  style={{fontSize: "40px"}}></i>{item.name}
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </Link>
-                            ))}
-                        </section>
+                                    </Link>
+                                ))}
+                            </section>
 
                     </div>
                     <div className="slider-item js-fullheight" style={{backgroundImage: `url(${rasm2}`}}>

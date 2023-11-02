@@ -1,7 +1,10 @@
+
+
 import {toast} from "react-toastify";
 import {BaseConfig} from "../BaseConfig";
 import {Api} from "../Api";
-import {ifStatus} from "../../utils/Utils";
+import {ifStatus} from "../utils/Utils";
+// import datata from "bootstrap/js/src/dom/data.js";
 
 export const LoginHandler = async (data) => {
     if (data.phoneNumber.trim().length === 0) {
@@ -34,6 +37,9 @@ export const Register = async (dto) => {
     if (dto.phoneNumber.trim().length !== 9) {
         return toast.warn("tel raqamni tog'ri kiriting")
     }
+    if (dto.password.trim().length ===0){
+        return toast.warn("parol bush bulmasin")
+    }
     if (dto.name.trim().length === 0) {
         return toast.warn("ismingizni kiriting")
     }
@@ -48,6 +54,7 @@ export const Register = async (dto) => {
             localStorage.setItem("firstName",dto.name)
             localStorage.setItem("lastName",dto.surName)
             localStorage.setItem('phoneNumber', dto.phoneNumber)
+            localStorage.setItem('password', dto.password)
             localStorage.setItem("role","user")
             toast.success("kuting...")
             setTimeout(() => {

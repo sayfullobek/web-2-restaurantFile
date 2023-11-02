@@ -18,7 +18,7 @@ export const Category = () => {
             const data = {
                 name
             }
-            await axios.post("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category", data)
+            await axios.post("http://localhost:2020/api/category", data)
             toast.success("successfully saved category")
             setTimeout(() => {
                 window.location.reload()
@@ -36,7 +36,7 @@ export const Category = () => {
             const data = {
                 name
             }
-            await axios.put("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category/" + id, data)
+            await axios.put("http://localhost:2020/api/category/" + id, data)
             toast.success("successfully edited category")
             setTimeout(() => {
                 window.location.reload()
@@ -48,7 +48,7 @@ export const Category = () => {
 
     const deleteCategory = async () => {
         try {
-            await axios.delete("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category/" + id)
+            await axios.delete("http://localhost:2020/api/category/" + id)
             toast.success("deleted")
             setTimeout(() => {
                 window.location.reload()
@@ -60,7 +60,7 @@ export const Category = () => {
 
     const getAll = async () => {
         try {
-            const res = await axios.get("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category")
+            const res = await axios.get("http://localhost:2020/api/category/")
             setCategory(res.data._embedded.list)
             // setPageSize(res.data.page.size)
             // setTotalElements(res.data.page.totalElements)
@@ -79,6 +79,7 @@ export const Category = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
+        <>
         <div className={"container"}>
             <h1 className={"text-center m-5 text-primary"}>Category pages</h1>
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -120,7 +121,7 @@ export const Category = () => {
                     </tbody>
                 </table>
             )}
-            <PageNation totalData={category.length} perPage={prePage} paginate={paginate}/>
+            {/*<PageNation totalData={category.length} perPage={prePage} paginate={paginate}/>*/}
 
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -184,5 +185,6 @@ export const Category = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }

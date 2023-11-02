@@ -17,10 +17,11 @@ export const Product = () => {
     const getAll = async () => {
         try {
             await GetProductList(setProducts)
-            const res = await axios.get("https://restaran-web-2-23d3b13e4398.herokuapp.com/api/category")
+            const res = await axios.get("http://localhost:2020/api/category")
             setCategories(res.data._embedded.list)
             setLoading(true)
         } catch (err) {
+            console.log(err)
         }
     }
 
@@ -47,7 +48,7 @@ export const Product = () => {
         <div className={"container"}>
             {loading ? (
                 <>
-                    <div className=" w-100 d-flex align-items-center justify-content-between" style={{marginTop:"230px"}}>
+                    <div className=" w-100 d-flex align-items-center justify-content-between" style={{marginTop:"23 px"}}>
                         <div className={"w-25 d-flex align-items-center justify-content-between"}>
                             <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
@@ -124,6 +125,7 @@ const GetProduct = ({products, deleteProduct, categories, getAll}) => {
                         <td>{item.price}</td>
                         <td>{item.category.name}</td>
                         <td>
+
                             <button className={"btn btn-primary"} onClick={() => showModalInfoAnImg(item.img, "img")}
                                     type="button"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal"><i
@@ -206,6 +208,7 @@ const AddProduct = ({categories, getAll}) => {
         setCategoryId("")
         setDescription("")
         await getAll()
+
     }
     return (
         <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasRight"

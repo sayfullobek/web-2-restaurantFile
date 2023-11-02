@@ -1,7 +1,7 @@
 import {SideBar} from "../component/SideBar";
 import {Outlet} from 'react-router-dom'
-import {NotFound} from "../component/NotFound";
 import {Footer} from "../component/Footer";
+import {NotFound} from "../component/NotFound.jsx";
 
 export const AdminLayout = () => {
     const token = localStorage.getItem("token")
@@ -26,3 +26,15 @@ export const AdminLayout = () => {
         </div>
     )
 }
+// <div>
+//     <div style={{width: "82%",marginLeft:'18%' }}>
+//         <Header/>
+//     </div>
+//     <div style={{width: "20%",height: "100%",overflow: "auto"}} >
+//         <SideBar/>
+//
+//     </div>
+//     <div  style={{width:"80%",marginLeft:"19%"}}>
+//         <Outlet/>
+//     </div>
+// </div>

@@ -1,5 +1,5 @@
 import {useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {BaseConfig} from "../server/BaseConfig.js";
 import {Api} from "../server/Api.js";
 import {Loading} from "../component/Loading.jsx";
@@ -34,7 +34,7 @@ export const CategoryItem = () => {
                     {product.map((item) => (
                         <>
                             <div data-bs-toggle="modal" onClick={() => oneProduct(item)} id={"productCard"}
-                                 href="#exampleModalToggle" role="button"
+                                 href={"#exampleModalToggle"} role="button"
                                  className="card shadow d-inline-block mt-5 mb-3"
                                  style={{
                                      width: "600px",

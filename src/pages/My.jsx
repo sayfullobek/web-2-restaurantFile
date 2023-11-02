@@ -20,7 +20,7 @@ export const My = () => {
                             {item.name}
                         </Link>
                     ))}
-                   </form>
+                </form>
             </div>
         ) : (
             <NotFound/>

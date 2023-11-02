@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {LoginHandler} from "../../server/service/AuthService";
-import {isAuthenticated} from "../../utils/Utils";
+import {isAuthenticated} from "../../server/utils/Utils";
 import {useNavigate} from 'react-router-dom'
 
 export const Login = () => {

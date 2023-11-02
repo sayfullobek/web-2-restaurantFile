@@ -11,7 +11,6 @@ import {NotFound} from "../component/NotFound";
 import {UserLayout} from "../layout/UserLayout";
 import {District} from "../pages/admin/District.jsx";
 import {CategoryItem} from "../pages/CategoryItem.jsx";
-import "../assets/scss/style.scss";
 import "../assets/css/style.css";
 import {My} from "../pages/My.jsx";
 import {Basket} from "../pages/Basket.jsx";
@@ -19,6 +18,7 @@ import {Registers} from "../pages/auth/Register.jsx";
 import {Profile} from "../pages/profil.jsx";
 import {Cards} from "../pages/Cards.jsx";
 import {Order} from "../pages/Order.jsx";
+
 
 function App() {
     return (
@@ -31,7 +31,7 @@ function App() {
                         <Route path={"my/:id"} element={<My/>}/>
                         <Route path={"/basket"} element={<Basket/>}/>
                         <Route path={"/auth/register"} element={<Registers/>}/>
-                        <Route path={"/my/profile"} element={<Profile/>}/>
+                            <Route path={"/my/profile"} element={<Profile/>}/>
                         <Route path={"/my/cards"} element={<Cards/>}/>
                         <Route path={"/my/order"} element={<Order/>}/>
                     </Route>
@@ -40,6 +40,7 @@ function App() {
                         <Route index element={<Dashboard/>}/>
                         <Route path={"/auth/admin/category"} element={<Category/>}/>
                         <Route path={"/auth/admin/product"} element={<Product/>}/>
+
                         <Route path={"/auth/admin/product/:id"} element={<ProductItem/>}/>
                         <Route path={"/auth/admin/region"} element={<Region/>}/>
                         <Route path={"/auth/admin/district"} element={<District/>}/>

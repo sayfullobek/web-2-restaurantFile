@@ -18,9 +18,10 @@ export const ProductItem = () => {
         }
     }
     useEffect(() => {
-        getOne()
+            getOne()
     }, [])
     return (
+
         <div className={"container"}>
             {loading ? (
                 <div className="card mt-5">
