@@ -9,6 +9,7 @@ import {Pagination} from "../../component/Pagination.jsx";
 export const Product = () => {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
+
     const [categories, setCategories] = useState([])
     const [search, setSearch] = useState('')
     const [currentPage, setCurrentPage] = useState(1);
@@ -17,6 +18,8 @@ export const Product = () => {
     const getAll = async () => {
         try {
             await GetProductList(setProducts)
+
+
 
             const res = await axios.get("http://localhost:2020/api/category")
             setCategories(res.data._embedded.list)
