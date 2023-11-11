@@ -17,6 +17,7 @@ export const Product = () => {
     const getAll = async () => {
         try {
             await GetProductList(setProducts)
+
             const res = await axios.get("http://localhost:2020/api/category")
             setCategories(res.data._embedded.list)
             setLoading(true)
