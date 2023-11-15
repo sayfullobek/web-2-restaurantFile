@@ -23,7 +23,7 @@ export const LoginHandler = async (data) => {
             localStorage.setItem("role", res.data.user.roles[0].roleName)
             localStorage.setItem("token", res.data.resToken.body)
             localStorage.setItem("tokenType", res.data.resToken.tokenType)
-            toast.success("kuting...")
+            toast.success("quring...")
             setTimeout(() => {
                 window.location.reload()
             }, 2000)
